@@ -1,7 +1,7 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 
 export default clerkMiddleware((auth, req) => {
-  console.log(auth().protect())
+  auth().protect();
 });
 
 export const config = {
