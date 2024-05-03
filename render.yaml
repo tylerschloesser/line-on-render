@@ -3,7 +3,7 @@ services:
   name: line-on-render
   runtime: node
   plan: free
-  buildCommand: yarn; yarn build; yarn run prisma migrate deploy
+  buildCommand: yarn install --production=false && yarn build && yarn run prisma migrate deploy
   startCommand: yarn start
   autoDeploy: false
   envVars:
