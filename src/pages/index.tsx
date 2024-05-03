@@ -34,12 +34,14 @@ function CreateItem() {
   const createItem = trpc.createItem.useMutation({
     async onSuccess() {
       await utils.listItems.invalidate();
+      setName("");
     },
   });
 
   return (
     <form
-      onSubmit={() => {
+      onSubmit={(e) => {
+        e.preventDefault();
         createItem.mutateAsync({ name });
       }}
     >
