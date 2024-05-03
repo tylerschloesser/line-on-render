@@ -15,6 +15,20 @@ export const appRouter = router({
       };
     }),
   listItems: procedure.query(() => prisma.item.findMany()),
+  createItem: procedure
+    .input(
+      z.strictObject({
+        name: z.string(),
+      })
+    )
+    .mutation(async (opts) => {
+      const item = await prisma.item.create({
+        data: {
+          name: opts.input.name,
+        },
+      });
+      return item;
+    }),
 });
 
 // export type definition of API

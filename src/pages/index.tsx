@@ -1,5 +1,6 @@
 import { trpc } from "@/utils/trpc";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
   const items = trpc.listItems.useQuery();
@@ -20,6 +21,35 @@ export default function Home() {
           )}
         </>
       </div>
+      <CreateItem />
     </div>
+  );
+}
+
+function CreateItem() {
+  const [name, setName] = useState("");
+
+  const utils = trpc.useUtils();
+
+  const createItem = trpc.createItem.useMutation({
+    async onSuccess() {
+      await utils.listItems.invalidate();
+    },
+  });
+
+  return (
+    <form
+      onSubmit={() => {
+        createItem.mutateAsync({ name });
+      }}
+    >
+      <input
+        value={name}
+        onChange={(e) => {
+          setName(e.target.value);
+        }}
+      ></input>
+      <button type="submit">Create</button>
+    </form>
   );
 }
