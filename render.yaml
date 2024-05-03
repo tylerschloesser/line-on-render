@@ -1,6 +1,6 @@
 services:
 - type: web
-  name: next-js
+  name: line-on-render
   runtime: node
   plan: free
   buildCommand: yarn; yarn build; yarn run prisma migrate deploy
