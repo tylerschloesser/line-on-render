@@ -2,7 +2,7 @@ services:
 - type: web
   name: next-js
   runtime: node
-  plan: starter
+  plan: free
   buildCommand: yarn; yarn build; yarn run prisma migrate deploy
   startCommand: yarn start
   autoDeploy: false
@@ -15,3 +15,4 @@ services:
         property: connectionString
 databases:
   - name: db
+    plan: free
