@@ -50,8 +50,11 @@ function CreateItem() {
         onChange={(e) => {
           setName(e.target.value);
         }}
+        disabled={createItem.isPending}
       ></input>
-      <button type="submit">Create</button>
+      <button type="submit" disabled={createItem.isPending}>
+        Create
+      </button>
     </form>
   );
 }
